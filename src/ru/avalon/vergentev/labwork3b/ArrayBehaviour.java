@@ -3,12 +3,11 @@ package ru.avalon.vergentev.labwork3b;
 public interface ArrayBehaviour {
     int SIZE = 1024;
 
-    void get ();
-    void setTrue ();
-    void set ();
-    void setFalse ();
-    void inverseElement ();
+    boolean get (int i);
+    void setTrue (int i);
+    void set (int i, boolean value);
+    void setFalse (int i);
+    void inverseElement (int i);
     int countTrues ();
-
-
+    String toString (int i);
 }
