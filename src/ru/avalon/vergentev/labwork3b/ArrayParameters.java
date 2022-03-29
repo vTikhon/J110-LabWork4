@@ -33,11 +33,11 @@ public class ArrayParameters implements ArrayBehaviour {
     //метод инвертирования элемента массива с заданным индексом
     @Override
     public void inverseElement(int i) {
-        if (array[i] = false) {
-            array[i] = true;
+        if (array[i]) {
+            array[i] = false;
             System.out.println("Element " + i + " inversed to true. ");
         } else {
-            array[i] = false;
+            array[i] = true;
             System.out.println("Element " + i + " inversed to false. ");
         }
     }
@@ -46,8 +46,8 @@ public class ArrayParameters implements ArrayBehaviour {
     @Override
     public int countTrues() {
         int N = 0;
-        for (int i = 0; i < array.length; i++) {
-            if (array[i] == true) {
+        for (boolean i : array) {
+            if (i) {
                 N = N + 1;
             }
         }
@@ -57,7 +57,7 @@ public class ArrayParameters implements ArrayBehaviour {
 
     @Override
     public String toString(int i) {
-        if (array[i] == true) {
+        if (array[i]) {
             System.out.println("Element " + i + " is 1.");
         } else {
             System.out.println("Element " + i + " is 0.");
