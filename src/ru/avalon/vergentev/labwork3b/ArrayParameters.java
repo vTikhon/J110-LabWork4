@@ -8,38 +8,58 @@ public class ArrayParameters implements ArrayBehaviour {
     //метод получения элемента массива с заданным индексом
     @Override
     public boolean get(int i) {
-        System.out.println("Value of element " + i + " is: " + array[i]);
-        return array[i];
+        try {
+            System.out.println("Value of element " + i + " is: " + array[i]);
+        } catch (ArrayIndexOutOfBoundsException ex) {
+            System.out.println("Index of massive out of the range.");
+        }   return false;
     }
     //метод установки элемента массива с заданным индексом
     @Override
     public void set(int i, boolean value) {
-        array[i] = value;
+        try {
+            array[i] = value;
+        } catch (ArrayIndexOutOfBoundsException ex) {
+            System.out.println("Index of massive out of the range.");
+        }
     }
 
     //метод установки элемента массива с заданным индексом в значение true
     @Override
     public void setTrue(int i) {
-        array[i] = true;
-        System.out.println("Value of element " + i + " set to true. ");
+        try {
+            array[i] = true;
+            System.out.println("Value of element " + i + " force set to true. ");
+        } catch (ArrayIndexOutOfBoundsException ex) {
+            System.out.println("Index of massive out of the range.");
+        }
     }
     //метод установки элемента массива с заданным индексом в значение false
     @Override
     public void setFalse(int i) {
-        array[i] = false;
-        System.out.println("Value of element " + i + " set to false. ");
+        try {
+            array[i] = false;
+            System.out.println("Value of element " + i + " force set to false. ");
+        } catch (ArrayIndexOutOfBoundsException ex) {
+            System.out.println("Index of massive out of the range.");
+        }
     }
 
     //метод инвертирования элемента массива с заданным индексом
     @Override
     public void inverseElement(int i) {
-        if (array[i]) {
-            array[i] = false;
-            System.out.println("Element " + i + " inversed to true. ");
-        } else {
-            array[i] = true;
-            System.out.println("Element " + i + " inversed to false. ");
+        try {
+            if (array[i]) {
+                array[i] = false;
+                System.out.println("Element " + i + " inversed to true. ");
+            } else {
+                array[i] = true;
+                System.out.println("Element " + i + " inversed to false. ");
+            }
+        } catch (ArrayIndexOutOfBoundsException ex) {
+            System.out.println("Index of massive out of the range.");
         }
+
     }
 
     //метод счёта элементов массива со значением true
@@ -57,12 +77,15 @@ public class ArrayParameters implements ArrayBehaviour {
 
     @Override
     public String toString(int i) {
-        if (array[i]) {
-            System.out.println("Element " + i + " is 1.");
-        } else {
-            System.out.println("Element " + i + " is 0.");
+        try {
+            if (array[i]) {
+                System.out.println("Element " + i + " is 1.");
+            } else {
+                System.out.println("Element " + i + " is 0.");
+            }
+        } catch (ArrayIndexOutOfBoundsException ex) {
+            System.out.println("Index of massive out of the range.");
         }
-
         return Arrays.toString(array);
     }
 }
