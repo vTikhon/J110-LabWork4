@@ -24,14 +24,14 @@ public class IntArray implements ArrayBehaviour {
     public boolean get(int i) {
         int numberOfIndexArray = i / 32;
         int numberOfBit = i % 32;
-        int a = 0;
+        int bitValue = 0;
         try {
-            a = (array2[numberOfIndexArray] << (32 - numberOfBit)) >>> 31;
-            System.out.println("Bit number " + i + " (" +  numberOfBit + " bit of " + numberOfIndexArray + " array element)" + " is " + a + ". Value of array element " + numberOfIndexArray + " is: " + array2[numberOfIndexArray] + " (binary code: " + Integer.toBinaryString(array2[numberOfIndexArray]) + "). ");
+            bitValue = (array2[numberOfIndexArray] << (32 - numberOfBit)) >>> 31;
+            System.out.println("Bit number " + i + " (" +  numberOfBit + " bit of " + numberOfIndexArray + " array element)" + " is " + bitValue + ". Value of array element " + numberOfIndexArray + " is: " + array2[numberOfIndexArray] + " (binary code: " + Integer.toBinaryString(array2[numberOfIndexArray]) + "). ");
         } catch (ArrayIndexOutOfBoundsException ex) {
             System.out.println("Index of massive is out of the range.");
         }
-        if (a == 1) {
+        if (bitValue == 1) {
             return true;
         }
         return false;
@@ -44,18 +44,18 @@ public class IntArray implements ArrayBehaviour {
         try {
             int numberOfIndexArray = i / 32;
             int numberOfBit = i % 32;
-            int a = (array2[numberOfIndexArray] << (32-numberOfBit)) >>> 31;
-            if (value == false && a == 0) {
-                int b = (array2[numberOfIndexArray]) ^ (a << (numberOfBit - 1));
+            int bitValue = (array2[numberOfIndexArray] << (32-numberOfBit)) >>> 31;
+            if (value == false && bitValue == 0) {
+                int b = (array2[numberOfIndexArray]) ^ (bitValue << (numberOfBit - 1));
                 array2[numberOfIndexArray] = b;
-            } else if (value == false && a == 1) {
-                int b = (array2[numberOfIndexArray]) ^ (a << (numberOfBit - 1));
+            } else if (value == false && bitValue == 1) {
+                int b = (array2[numberOfIndexArray]) ^ (bitValue << (numberOfBit - 1));
                 array2[numberOfIndexArray] = b;
-            } else if (value == true && a == 0) {
+            } else if (value == true && bitValue == 0) {
                 int b = (array2[numberOfIndexArray]) ^ (1 << (numberOfBit - 1));
                 array2[numberOfIndexArray] = b;
-            } else if (value == true && a == 1) {
-                int b = (array2[numberOfIndexArray]) | (a << (numberOfBit - 1));
+            } else if (value == true && bitValue == 1) {
+                int b = (array2[numberOfIndexArray]) | (bitValue << (numberOfBit - 1));
                 array2[numberOfIndexArray] = b;
             }
         } catch (ArrayIndexOutOfBoundsException ex) {
@@ -95,14 +95,14 @@ public class IntArray implements ArrayBehaviour {
     public void inverseElement(int i) {
         int numberOfIndexArray = i / 32;
         int numberOfBit = i % 32;
-        int a = (array2[numberOfIndexArray] << (32 - numberOfBit)) >>> 31;
-        System.out.print("Bit number " + i + " (" +  numberOfBit + " bit of " + numberOfIndexArray + " array element)" + " is " + a);
-        a = (1^a);
+        int bitValue = (array2[numberOfIndexArray] << (32 - numberOfBit)) >>> 31;
+        System.out.print("Bit number " + i + " (" +  numberOfBit + " bit of " + numberOfIndexArray + " array element)" + " is " + bitValue);
+        bitValue = (1^bitValue);
         System.out.print(" was inversed to ");
-        System.out.println(a + ". ");
-        if (a == 1) {
+        System.out.println(bitValue + ". ");
+        if (bitValue == 1) {
             set(i, true);
-        } else if (a==0) {
+        } else if (bitValue==0) {
             set(i, false);
         }
     }
@@ -126,10 +126,11 @@ public class IntArray implements ArrayBehaviour {
     public String toString() {
         for (int i = 0; i < array2.length; i++) {
             int numberOfIndexArray = i / 32;
-            int numberOfBit = i % 32;
-            int a = (array2[numberOfIndexArray] << (32 - numberOfBit)) >>> 31;
-            System.out.println("Element " + i + " , bit number " + numberOfBit + " is: " + a);
-
+            for (int j = 1; j <= 32; j++) {
+                int numberOfBit = j % 32;
+                int bitValue = (array2[numberOfIndexArray] << (32 - numberOfBit)) >>> 31;
+                System.out.println("Element " + (i+1)  + ", bit number " + j + " (" + (32*i+j) + ") is: " + bitValue);
+            }
         }
         return Arrays.toString(array2);
     }
