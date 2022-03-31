@@ -5,24 +5,15 @@ import java.util.Arrays;
 public class BooleanArray implements ArrayBehaviour {
     boolean [] array = new boolean[SIZE]; //выделил память под массив
 
-    //метод установки значений массива
-    @Override
-    public void setArray(int i, boolean value) {
-        try {
-            array[i] = true;
-        } catch (ArrayIndexOutOfBoundsException ex) {
-            System.out.println("Index of massive out of the range.");
-        }
-    }
 
     //метод получения элемента массива с заданным индексом
     @Override
-    public boolean get(int i) {
+    public void get(int i) {
         try {
             System.out.println("Value of element " + i + " is: " + array[i]);
         } catch (ArrayIndexOutOfBoundsException ex) {
             System.out.println("Index of massive out of the range.");
-        }   return false;
+        }
     }
     //метод установки элемента массива с заданным индексом
     @Override
@@ -74,7 +65,7 @@ public class BooleanArray implements ArrayBehaviour {
 
     //метод счёта элементов массива со значением true
     @Override
-    public int countTrues() {
+    public void countTrues() {
         int N = 0;
         for (boolean i : array) {
             if (i) {
@@ -82,19 +73,20 @@ public class BooleanArray implements ArrayBehaviour {
             }
         }
         System.out.println("Number of true values is: " + N);
-        return N;
     }
 
     @Override
     public String toString() {
         for (int i = 0; i < array.length; i++) {
             if (array[i]) {
-                System.out.println("Element " + i + " is 1 (true).");
+                System.out.println("Element " + (i+1) + " is 1 (true).");
             } else {
-                System.out.println("Element " + i + " is 0 (false).");
+                System.out.println("Element " + (i+1) + " is 0 (false).");
             }
         }
         return Arrays.toString(array);
     }
+
+
 
 }
