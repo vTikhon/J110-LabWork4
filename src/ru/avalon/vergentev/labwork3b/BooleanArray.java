@@ -2,7 +2,7 @@ package ru.avalon.vergentev.labwork3b;
 
 import java.util.Arrays;
 
-public class ArrayParameters implements ArrayBehaviour {
+public class BooleanArray implements ArrayBehaviour {
     boolean [] array = new boolean[SIZE]; //выделил память под массив
 
     //метод получения элемента массива с заданным индексом
