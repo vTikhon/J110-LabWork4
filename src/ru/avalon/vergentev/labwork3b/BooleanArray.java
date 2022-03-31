@@ -5,6 +5,16 @@ import java.util.Arrays;
 public class BooleanArray implements ArrayBehaviour {
     boolean [] array = new boolean[SIZE]; //выделил память под массив
 
+    //метод установки значений массива
+    @Override
+    public void setArray(int i, boolean value) {
+        try {
+            array[i] = true;
+        } catch (ArrayIndexOutOfBoundsException ex) {
+            System.out.println("Index of massive out of the range.");
+        }
+    }
+
     //метод получения элемента массива с заданным индексом
     @Override
     public boolean get(int i) {
@@ -76,16 +86,15 @@ public class BooleanArray implements ArrayBehaviour {
     }
 
     @Override
-    public String toString(int i) {
-        try {
+    public String toString() {
+        for (int i = 0; i < array.length; i++) {
             if (array[i]) {
-                System.out.println("Element " + i + " is 1.");
+                System.out.println("Element " + i + " is 1 (true).");
             } else {
-                System.out.println("Element " + i + " is 0.");
+                System.out.println("Element " + i + " is 0 (false).");
             }
-        } catch (ArrayIndexOutOfBoundsException ex) {
-            System.out.println("Index of massive out of the range.");
         }
         return Arrays.toString(array);
     }
+
 }
